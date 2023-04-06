@@ -18,9 +18,13 @@ export default function RootLayout({ children }) {
 			<head>
 				<title>Primer proyecto</title>
 			</head>
-			<body className={poppins.className}>
-				<Links />
-				{children}
+			<body
+				className={`${poppins.className} sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl`}
+			>
+				<header>
+					<Links />
+				</header>
+				<main>{children}</main>
 			</body>
 		</html>
 	);
