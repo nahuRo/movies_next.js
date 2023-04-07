@@ -13,7 +13,10 @@ module.exports = {
 			gridTemplateColumns: {
 				fluid: "repeat(auto-fit,minmax(200px,1fr))",
 			},
+			// boxShadow: {
+			// 	rightShadow: "inset -81px 0px 50px -13px rgba(255,255,255,1)",
+			// },
 		},
 	},
-	plugins: [],
+	plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
 };
