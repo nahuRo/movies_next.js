@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default async function Home() {
 	const data = await fetch(
-		`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`
+		`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=es`
 	);
 
 	const res = await data.json();
