@@ -3,7 +3,7 @@ import Card from "./Card";
 export default function ContainerData({ data }) {
 	return (
 		<div>
-			<div className="grid gap-4 grid-cols-fluid">
+			<div className="grid gap-4 grid-cols-fluid sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl my-0m mx-auto">
 				{data.results.map((movie) => (
 					<Card
 						key={movie.id}
