@@ -1,43 +1,16 @@
-import CardCast from "@/components/CardCast";
-import PosterCollection from "@/components/PosterCollection";
-import MoviesDetail from "@/components/MovieDetail";
+import { CardCast, PosterCollection } from "../../../components";
 import Image from "next/image";
 import Link from "next/link";
 
-function secondsToString(seconds) {
-	let hour = Math.floor(seconds / 3600);
-	hour = hour < 10 ? "0" + hour : hour;
-	let minute = Math.floor((seconds / 60) % 60);
-	minute = minute < 10 ? "0" + minute : minute;
-	let second = seconds % 60;
-	second = second < 10 ? "0" + second : second;
-	return hour + ":" + minute + ":" + second;
-}
+import { movie } from "../../../services/fetchAPI";
 
 export default async function MovieDetailPage({ params }) {
 	const { id_movie } = params;
 	const imagePath = "https://image.tmdb.org/t/p/original";
 
-	const data = await fetch(
-		`https://api.themoviedb.org/3/movie/${id_movie}?api_key=${process.env.API_KEY}&language=es`
-	);
-
-	const credits = await fetch(
-		`https://api.themoviedb.org/3/movie/${id_movie}/credits?api_key=${process.env.API_KEY}&language=es`
-	);
-
-	const recommendations = await fetch(
-		`https://api.themoviedb.org/3/movie/${id_movie}/recommendations?api_key=${process.env.API_KEY}&language=es`
-	);
-
-	// const images = await fetch(
-	// 	`https://api.themoviedb.org/3/movie/${id_movie}/images?api_key=${process.env.API_KEY}&language=es`
-	// );
-
-	const res_movie = await data.json();
-	const res_cred = await credits.json();
-	const res_recom = await recommendations.json();
-	// const res_images = await images.json();
+	const res_movie = await movie.getData(id_movie);
+	const res_cred = await movie.getSpecficData(id_movie, "credits");
+	const res_recom = await movie.getSpecficData(id_movie, "recommendations");
 
 	const {
 		backdrop_path,
@@ -63,7 +36,7 @@ export default async function MovieDetailPage({ params }) {
 					src={imagePath + backdrop_path}
 					width={3000}
 					height={1000}
-					alt="hola"
+					alt={title}
 					className="absolute top-0 right-0 w-full h-full object-cover transform translate-x-1/3 "
 				/>
 				<div className="relative z-20 flex flex-row gap-x-8 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl my-0m mx-auto">
@@ -136,7 +109,7 @@ export default async function MovieDetailPage({ params }) {
 										>
 											<Link
 												key={res.id}
-												href={`/${res.id}`}
+												href={`movies/${res.id}`}
 												className="w-[200px] h-[330px] block"
 											>
 												<Image

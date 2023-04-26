@@ -23,6 +23,11 @@ export default function RootLayout({ children }) {
 					<Links />
 				</header>
 				<main>{children}</main>
+				<footer className="bg-orange-700 space-x-4 p-4 font-medium ">
+					<div className="sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl my-0m mx-auto">
+						soy el footer
+					</div>
+				</footer>
 			</body>
 		</html>
 	);

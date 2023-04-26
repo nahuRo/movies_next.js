@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { ContainerData } from "../../components";
-import { movie } from "../../services/fetchAPI";
+import { ContainerData } from "../../../../components";
+import { movie } from "../../../../services/fetchAPI";
 
-export default async function MoviesPage() {
-	const data = await movie.getAllData("now_playing", 1);
+export default async function Page({ params }) {
+	const { number_page } = params;
+	const data = await movie.getAllData("now_playing", number_page);
 
 	const pages = [];
 	for (let i = 0; i < data.total_pages; i++) {
@@ -30,5 +31,3 @@ export default async function MoviesPage() {
 		</>
 	);
 }
-
-// amazon lamda, severless, ec2 y s3 trcp

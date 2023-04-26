@@ -4,7 +4,6 @@ export default async function CardCast({ actor }) {
 	const imagePath = "https://image.tmdb.org/t/p/original";
 
 	const { name, profile_path, character, id } = actor;
-
 	return (
 		<div className="shadow-2xl w-[140px] h-[255px] rounded-lg">
 			<div className="w-[138px] h-[175px]">

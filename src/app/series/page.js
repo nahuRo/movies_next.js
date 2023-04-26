@@ -1,15 +1,15 @@
-import ContainerData from "@/components/ContainerData";
+import { tv_show } from "../../services/fetchAPI";
+import { ContainerData } from "../../components";
 
-export default async function SeriesPage() {
-	const data = await fetch(
-		`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.API_KEY}&language=es`
-	);
-	const res = await data.json();
+export default async function SeriesPage({ params }) {
+	const res = await tv_show.getAllData("airing_today");
 
 	return (
-		<div>
-			<h1 className="text-2xl py-4">Series</h1>
-			<ContainerData data={res} />
-		</div>
+		<>
+			<div>
+				<h1 className="text-2xl py-4">Series</h1>
+				<ContainerData data={res} />
+			</div>
+		</>
 	);
 }
